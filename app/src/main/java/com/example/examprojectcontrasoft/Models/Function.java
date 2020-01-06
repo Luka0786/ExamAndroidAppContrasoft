@@ -1,15 +1,21 @@
 package com.example.examprojectcontrasoft.Models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Objects;
 
 public class Function {
 
+    @SerializedName("functionId")
     private Long functionId;
 
+    @SerializedName("functionName")
     private String functionName;
 
+    @SerializedName("allowed")
     private boolean allowed;
 
+    @SerializedName("company")
     private Company company;
 
     public Function(String functionName, boolean allowed, Company company) {

@@ -1,11 +1,14 @@
 package com.example.examprojectcontrasoft.Models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Objects;
 
 public class Company {
-
+    @SerializedName("companyId")
     private Long companyId;
 
+    @SerializedName("name")
     private String name;
 
     public Company(String name) {

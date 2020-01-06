@@ -1,13 +1,17 @@
 package com.example.examprojectcontrasoft.Models;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class LoggedInUser {
-
+    @SerializedName("staff")
     private Staff staff;
 
-    private List<Function> companyFunctions;
+    @SerializedName("companyFunctions")
+    private ArrayList<Function> companyFunctions = new ArrayList<>();
 
     public Staff getStaff() {
         return staff;
@@ -17,11 +21,11 @@ public class LoggedInUser {
         this.staff = staff;
     }
 
-    public List<Function> getCompanyFunctions() {
+    public ArrayList<Function> getCompanyFunctions() {
         return companyFunctions;
     }
 
-    public void setCompanyFunctions(List<Function> companyFunctions) {
+    public void setCompanyFunctions(ArrayList<Function> companyFunctions) {
         this.companyFunctions = companyFunctions;
     }
 
@@ -39,12 +43,12 @@ public class LoggedInUser {
         return Objects.hash(staff, companyFunctions);
     }
 
+
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("LoggedInUser{");
-        sb.append("staff=").append(staff);
-        sb.append(", companyFunctions=").append(companyFunctions);
-        sb.append('}');
-        return sb.toString();
+        return "LoggedInUser{" +
+                "staff=" + staff +
+                ", companyFunctions=" + companyFunctions +
+                '}';
     }
 }
