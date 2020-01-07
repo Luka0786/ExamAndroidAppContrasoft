@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">ExamProjectContraSoft</string>
-    <string name="loginBtn">Login</string>
-    <string name="emailHint">Email</string>
-    <string name="passwordHint">Password</string>
+    <string name="login_btn">Login</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="bad_credentials">Bad credentials</string>
+    <string name="logout_btn">Logout</string>
+    <string name="shared_pref_cookie">SharedPrefCookie</string>
+    <string name="shared_pref_name">SharedPref</string>
 </resources>

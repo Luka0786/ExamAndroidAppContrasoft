@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".Activities.MainActivity"
     >
 
 
@@ -17,7 +17,7 @@
         android:inputType="textEmailAddress"
         android:layout_centerHorizontal="true"
         android:layout_above="@id/passwordLogin"
-        android:hint="@string/emailHint"
+        android:hint="@string/email_hint"
         android:textAlignment="center"
         tools:layout_editor_absoluteX="98dp"
         tools:layout_editor_absoluteY="283dp"
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
-        android:hint="@string/passwordHint"
+        android:hint="@string/password_hint"
         android:textAlignment="center"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
@@ -44,13 +44,13 @@
         android:layout_below="@id/passwordLogin"
         android:layout_centerHorizontal="true"
         android:background="@color/colorPrimary"
-        android:text="@string/loginBtn" />
+        android:text="@string/login_btn" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/loginBtn"
+        android:text="@string/login_btn"
         android:textSize="28dp"
         android:layout_centerHorizontal="true"
         android:layout_above="@id/emailLogin"

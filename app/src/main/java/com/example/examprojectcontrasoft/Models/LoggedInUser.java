@@ -10,7 +10,7 @@ public class LoggedInUser {
     @SerializedName("staff")
     private Staff staff;
 
-    @SerializedName("companyFunctions")
+    @SerializedName("functions")
     private ArrayList<Function> companyFunctions = new ArrayList<>();
 
     public Staff getStaff() {

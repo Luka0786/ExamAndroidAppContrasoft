@@ -1,4 +1,4 @@
-package com.example.examprojectcontrasoft;
+package com.example.examprojectcontrasoft.Activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.examprojectcontrasoft.Instances.RetrofitClientAPI;
 import com.example.examprojectcontrasoft.Interfaces.RetrofitAPIInterface;
 import com.example.examprojectcontrasoft.Models.LoggedInUser;
+import com.example.examprojectcontrasoft.R;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText loginEmail, loginPassword;
     private Button loginBtn;
     private String sessionCookie;
-    SharedPreferences pref;
-    SharedPreferences.Editor editor;
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +33,12 @@ public class MainActivity extends AppCompatActivity {
 
         init();
         setupSharedPreferences();
-        System.out.println("Starting");
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getLoginCookieAPI();
             }
         });
-
     }
 
     private void init(){
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupSharedPreferences() {
-        pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+        pref = getApplicationContext().getSharedPreferences(getString(R.string.shared_pref_name), MODE_PRIVATE);
         editor = pref.edit();
     }
 
@@ -70,51 +69,29 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                System.out.println("RESPONSE");
-                System.out.println(response.code());
 
-                sessionCookie = response.headers().get("Set-Cookie");
-                editor.putString("cookieTest", sessionCookie);
-                editor.commit();
+                if (response.code() == 200) {
+                    sessionCookie = response.headers().get("Set-Cookie");
+                    editor.putString(getString(R.string.shared_pref_cookie), sessionCookie);
+                    editor.commit();
 
-                System.out.println(response.headers().get("Set-Cookie"));
-                System.out.println("GETLOGINCOOKIE ------- END");
+                    Intent loginIntent = new Intent(MainActivity.this, HomeActivity.class);
+                    startActivity(loginIntent);
+                    finish();
+                }
 
-                loginPostApi();
-            }
+                if (response.code() == 401) {
+                    Toast.makeText(MainActivity.this, getString(R.string.bad_credentials), Toast.LENGTH_SHORT).show();
 
-            @Override
+                }
+                }
+
+                @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 t.printStackTrace();
                 Toast.makeText(MainActivity.this, "Could not login...", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private void loginPostApi() {
-        System.out.println("LOGIN REAL ONE ------- START");
-
-        RetrofitAPIInterface apiServiceInterface = RetrofitClientAPI.getRetrofitInstance().create(RetrofitAPIInterface.class);
-
-        String cookieTest = pref.getString("cookieTest", "");
-
-        Call<LoggedInUser> call = apiServiceInterface.loginUser(cookieTest);
-
-        call.enqueue(new Callback<LoggedInUser>() {
-            @Override
-            public void onResponse(Call<LoggedInUser> call, Response<LoggedInUser> response) {
-                System.out.println("RESPONSE2: " + response.body());
-
-            }
-
-            @Override
-            public void onFailure(Call<LoggedInUser> call, Throwable t) {
-                System.out.println("FEJL2");
-                t.printStackTrace();
-            }
-        });
-
-
     }
 
 

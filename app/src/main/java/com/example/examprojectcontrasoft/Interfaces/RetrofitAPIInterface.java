@@ -14,6 +14,6 @@ public interface RetrofitAPIInterface {
     Call<Void> login(@Query("email") String email,
                              @Query("password") String password);
 
-    @GET("/api/function/login")
-    Call<LoggedInUser> loginUser(@Header("Cookie") String sessionIdCookie);
+    @GET("/api/function/fetch-data")
+    Call<LoggedInUser> fetchData(@Header("Cookie") String sessionIdCookie);
 }
