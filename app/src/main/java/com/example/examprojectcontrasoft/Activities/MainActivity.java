@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putString(getString(R.string.shared_pref_cookie), sessionCookie);
                     editor.commit();
 
+
                     Intent loginIntent = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(loginIntent);
                     finish();

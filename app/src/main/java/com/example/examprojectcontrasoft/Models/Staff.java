@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Objects;
 
 public class Staff {
-    @SerializedName("staffid")
+
     private Long staffId;
 
     @SerializedName("firstName")

@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.HomeActivity"></activity>
+        <activity android:name=".Activities.TimeRecord.MyWorkedActivity"></activity>
+        <activity android:name=".Activities.TimeRecord.TimeRecordActivity" />
+        <activity android:name=".Activities.HomeActivity" />
         <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

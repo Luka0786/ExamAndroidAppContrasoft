@@ -7,4 +7,20 @@
     <string name="logout_btn">Logout</string>
     <string name="shared_pref_cookie">SharedPrefCookie</string>
     <string name="shared_pref_name">SharedPref</string>
+    <string name="check_in_time">Check in</string>
+    <string name="check_out_time">Check out</string>
+    <string name="check_pause_start">Pause start</string>
+    <string name="check_pause_end">Pause end</string>
+    <string name="shared_pref_staff_id">staff_id</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_confirm">Ok</string>
+    <string name="check_in_success">Successfully checked in</string>
+    <string name="shared_pref_checked_out">isCheckedOut</string>
+    <string name="shared_pref_pause_start">isPauseStarted</string>
+    <string name="shared_pref_pause_end">isPauseEnded</string>
+    <string name="check_out_success">Successfully checked out</string>
+    <string name="pause_start_success">Successfully started your pause</string>
+    <string name="pause_end_success">Successfully ended your pause</string>
+    <string name="back_btn">Back</string>
+
 </resources>

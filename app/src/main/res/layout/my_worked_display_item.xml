@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:elevation="5dp"
+        app:cardCornerRadius="5dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/myWorkedDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date: "
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="6dp"
+                />
+
+            <TextView
+                android:id="@+id/myWorkedWorkTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Work time: "
+                android:layout_below="@id/myWorkedDate"
+                android:layout_marginBottom="3dp"
+
+                />
+
+            <TextView
+                android:id="@+id/myWorkedTotalPause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total pause: "
+                android:layout_below="@id/myWorkedWorkTime"
+                android:layout_marginBottom="3dp"
+
+                />
+
+            <TextView
+                android:id="@+id/myWorkedTotalWorked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total worked: "
+                android:layout_below="@id/myWorkedTotalPause"
+                android:layout_marginBottom="3dp"
+
+                />
+
+            <TextView
+                android:id="@+id/myWorkedTotalTimeAtWork"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total time at work: "
+                android:layout_below="@id/myWorkedTotalWorked"
+                android:layout_marginBottom="3dp"
+
+                />
+
+        </RelativeLayout>
+        
+
+        
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

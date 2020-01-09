@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.examprojectcontrasoft.Activities.TimeRecord.TimeRecordActivity;
 import com.example.examprojectcontrasoft.Adapters.HomeAdapter;
 import com.example.examprojectcontrasoft.Instances.RetrofitClientAPI;
 import com.example.examprojectcontrasoft.Interfaces.OnNoteListener;
@@ -33,6 +34,7 @@ public class HomeActivity extends AppCompatActivity implements OnNoteListener {
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Function> functionsList;
     private Button logoutBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,10 @@ public class HomeActivity extends AppCompatActivity implements OnNoteListener {
         call.enqueue(new Callback<LoggedInUser>() {
             @Override
             public void onResponse(Call<LoggedInUser> call, Response<LoggedInUser> response) {
+                System.out.println(response.body());
+                editor.putLong(getString(R.string.shared_pref_staff_id),response.body().getStaff().getStaffId());
+                editor.commit();
+
                 functionsList = response.body().getCompanyFunctions();
                 genereateFunctionsRecyclerView(functionsList);
             }
@@ -80,7 +86,6 @@ public class HomeActivity extends AppCompatActivity implements OnNoteListener {
     }
 
     private void logoutUser() {
-        editor = pref.edit();
         editor.remove(getString(R.string.shared_pref_cookie));
         editor.apply();
 
@@ -92,6 +97,7 @@ public class HomeActivity extends AppCompatActivity implements OnNoteListener {
 
     private void setupSharedPreferences() {
         pref = getApplicationContext().getSharedPreferences(getString(R.string.shared_pref_name), MODE_PRIVATE);
+        editor = pref.edit();
     }
 
     private void init(){
@@ -105,6 +111,25 @@ public class HomeActivity extends AppCompatActivity implements OnNoteListener {
 
     @Override
     public void onNoteClick(int position) {
-        System.out.println(functionsList.get(position));
+        if (functionsList.size() > 0) {
+            switch (functionsList.get(position).getFunctionName()) {
+                case "Time record" :
+                    Intent timeRecordIntent = new Intent(HomeActivity.this, TimeRecordActivity.class);
+                    startActivity(timeRecordIntent);
+                    break;
+
+                case "Picture upload damage" :
+                    System.out.println("hej damage");
+                    break;
+
+                case "Picture upload receipt" :
+                    System.out.println("hej receipt");
+                    break;
+
+                default:
+                    System.out.println("hej default");
+                    break;
+                }
+            }
     }
 }
