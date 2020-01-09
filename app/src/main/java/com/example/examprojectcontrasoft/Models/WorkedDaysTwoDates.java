@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class WorkedDaysTwoDates {
 
-    private ArrayList workedDayDTOList = new ArrayList<>();
+    private ArrayList<WorkedDay> workedDayDTOList = new ArrayList<>();
 
     public WorkedDaysTwoDates(ArrayList workedDayDTOList) {
         this.workedDayDTOList = workedDayDTOList;
@@ -15,7 +15,7 @@ public class WorkedDaysTwoDates {
     public WorkedDaysTwoDates() {
     }
 
-    public List<WorkedDay> getWorkedDayDTOList() {
+    public ArrayList<WorkedDay> getWorkedDayDTOList() {
         return workedDayDTOList;
     }
 

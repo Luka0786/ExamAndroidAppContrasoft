@@ -80,7 +80,8 @@ public class MyWorkedActivity extends AppCompatActivity implements OnNoteListene
         call.enqueue(new Callback<WorkedDaysTwoDates>() {
             @Override
             public void onResponse(Call<WorkedDaysTwoDates> call, Response<WorkedDaysTwoDates> response) {
-                workedDaysList.addAll(response.body().getWorkedDayDTOList());
+                System.out.println(response);
+                workedDaysList = response.body().getWorkedDayDTOList();
                 genereateMyWorkedDaysRecyclerView(workedDaysList);
             }
 
@@ -104,7 +105,7 @@ public class MyWorkedActivity extends AppCompatActivity implements OnNoteListene
 
     private void init() {
         backBtn = findViewById(R.id.backBtnMyWorked);
-        recyclerViewHome = findViewById(R.id.recyclerViewHome);
+        recyclerViewHome = findViewById(R.id.recyclerViewMyWorked);
         workedDaysList = new ArrayList<>();
 
         layoutManager = new LinearLayoutManager(MyWorkedActivity.this);

@@ -38,11 +38,11 @@ public class MyWorkedAdapter extends RecyclerView.Adapter<MyWorkedAdapter.Custom
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-        holder.myWorkedDate.setText(dataList.get(position).getDate());
-        holder.myWorkedWorkTime.setText(dataList.get(position).getWorkTime());
-        holder.myWorkedTotalPause.setText(dataList.get(position).getPauseTotalTime());
-        holder.myWorkedTotalWorked.setText(dataList.get(position).getTotalWorked());
-        holder.myWorkedTotalTimeAtWork.setText(dataList.get(position).getTotalTimeAtWork());
+        holder.myWorkedDate.setText(context.getString(R.string.my_worked_date) + dataList.get(position).getDate());
+        holder.myWorkedWorkTime.setText(context.getString(R.string.my_worked_work_time) + dataList.get(position).getWorkTime());
+        holder.myWorkedTotalPause.setText(context.getString(R.string.my_worked_total_pause) + dataList.get(position).getPauseTotalTime());
+        holder.myWorkedTotalWorked.setText(context.getString(R.string.my_worked_total_worked) + dataList.get(position).getTotalWorked());
+        holder.myWorkedTotalTimeAtWork.setText(context.getString(R.string.my_work_total_time_at_work) + dataList.get(position).getTotalTimeAtWork());
     }
 
     @Override

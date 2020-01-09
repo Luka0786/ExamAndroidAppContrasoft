@@ -22,5 +22,10 @@
     <string name="pause_start_success">Successfully started your pause</string>
     <string name="pause_end_success">Successfully ended your pause</string>
     <string name="back_btn">Back</string>
+    <string name="my_worked_date">Date:\u0020</string>
+    <string name="my_worked_work_time"><b>Work time:\u0020</b></string>
+    <string name="my_worked_total_pause">Total pause:\u0020</string>
+    <string name="my_worked_total_worked">Total worked:\u0020</string>
+    <string name="my_work_total_time_at_work">Total time at work:\u0020</string>
 
 </resources>

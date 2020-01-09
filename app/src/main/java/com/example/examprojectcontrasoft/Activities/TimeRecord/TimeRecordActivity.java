@@ -57,6 +57,7 @@ public class TimeRecordActivity extends AppCompatActivity implements View.OnClic
 
         if (!isPauseEnded && !isCheckedOut && !isPauseStarted) {
             checkInBtn.setVisibility(View.VISIBLE);
+            myWorked.setVisibility(View.VISIBLE);
         }
 
         if (!isPauseStarted) {
@@ -272,8 +273,7 @@ public class TimeRecordActivity extends AppCompatActivity implements View.OnClic
         checkOutBtn.setOnClickListener(this);
         pauseStartBtn.setOnClickListener(this);
         pauseEndBtn.setOnClickListener(this);
-
-
+        myWorked.setOnClickListener(this);
 
         sessionCookie = pref.getString(getString(R.string.shared_pref_cookie), "");
         staffId = pref.getLong(getString(R.string.shared_pref_staff_id), 0);
@@ -303,6 +303,7 @@ public class TimeRecordActivity extends AppCompatActivity implements View.OnClic
                 break;
 
             case R.id.myWorkedBtn:
+                System.out.println("workedbtn");
                 Intent myWorked = new Intent(TimeRecordActivity.this, MyWorkedActivity.class);
                 startActivity(myWorked);
                 break;
