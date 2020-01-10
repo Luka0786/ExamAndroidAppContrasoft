@@ -3,13 +3,19 @@ package com.example.examprojectcontrasoft.Activities.TimeRecord;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.examprojectcontrasoft.Activities.HomeActivity;
 import com.example.examprojectcontrasoft.Instances.RetrofitClientAPI;
 import com.example.examprojectcontrasoft.Interfaces.RetrofitAPIInterface;
 import com.example.examprojectcontrasoft.Models.CheckIn;
@@ -17,6 +23,7 @@ import com.example.examprojectcontrasoft.Models.CheckOut;
 import com.example.examprojectcontrasoft.Models.PauseEnd;
 import com.example.examprojectcontrasoft.Models.PauseStart;
 import com.example.examprojectcontrasoft.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,11 +33,14 @@ public class TimeRecordActivity extends AppCompatActivity implements View.OnClic
 
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
-    private Button checkInBtn, checkOutBtn, pauseStartBtn, pauseEndBtn, myWorked;
+    private ImageButton checkInBtn, checkOutBtn, pauseStartBtn, pauseEndBtn;
+    private TextView checkTextLeftSide, checkTextRightSide;
     private boolean isCheckedOut, isPauseStarted, isPauseEnded;
     private String sessionCookie;
     private Long staffId;
     private AlertDialog.Builder alertDialogBuilder;
+    private BottomNavigationView bottomNavigationViewTimeRecord;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +50,7 @@ public class TimeRecordActivity extends AppCompatActivity implements View.OnClic
         setupSharedPreferences();
         init();
         setButtonVisibility();
+        navItemSelected();
     }
 
     private void setButtonVisibility() {
@@ -47,35 +58,38 @@ public class TimeRecordActivity extends AppCompatActivity implements View.OnClic
         isPauseStarted = pref.getBoolean(getString(R.string.shared_pref_pause_start), false);
         isPauseEnded = pref.getBoolean(getString(R.string.shared_pref_pause_end), false);
 
-
         if (!isCheckedOut) {
             checkOutBtn.setVisibility(View.INVISIBLE);
+
         } else {
+            checkTextRightSide.setText(R.string.check_out_time);
             checkOutBtn.setVisibility(View.VISIBLE);
             checkInBtn.setVisibility(View.INVISIBLE);
         }
 
         if (!isPauseEnded && !isCheckedOut && !isPauseStarted) {
+            checkTextLeftSide.setText(R.string.check_in_time);
+            checkTextRightSide.setText("");
             checkInBtn.setVisibility(View.VISIBLE);
-            myWorked.setVisibility(View.VISIBLE);
         }
 
         if (!isPauseStarted) {
             pauseStartBtn.setVisibility(View.INVISIBLE);
         } else {
+            checkTextLeftSide.setText(R.string.check_pause_start);
             pauseStartBtn.setVisibility(View.VISIBLE);
         }
 
         if (!isPauseEnded) {
             pauseEndBtn.setVisibility(View.INVISIBLE);
         } else {
+            checkTextLeftSide.setText("");
+            checkTextRightSide.setText(R.string.check_pause_end);
             pauseEndBtn.setVisibility(View.VISIBLE);
         }
     }
 
     private void checkInAPI() {
-
-
         alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("Are you sure you want to check in?")
                 .setTitle("Check In")
@@ -115,11 +129,6 @@ public class TimeRecordActivity extends AppCompatActivity implements View.OnClic
 
         AlertDialog dialog = alertDialogBuilder.create();
         dialog.show();
-
-
-
-
-
     }
 
     private void checkOutAPI() {
@@ -257,6 +266,32 @@ public class TimeRecordActivity extends AppCompatActivity implements View.OnClic
         dialog.show();
     }
 
+    private void navItemSelected() {
+        bottomNavigationViewTimeRecord.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.menuNavHome:
+                        Intent navHomeIntent = new Intent(TimeRecordActivity.this, HomeActivity.class);
+                        startActivity(navHomeIntent);
+                        return true;
+
+                    case R.id.menuNavRegisterTime:
+
+                        return true;
+
+                    case R.id.menuNavMyWorked:
+                        Intent navMyWorkedIntent = new Intent(TimeRecordActivity.this, MyWorkedActivity.class);
+                        startActivity(navMyWorkedIntent);
+                        return true;
+
+                    default:
+                        return true;
+                }
+            }
+        });
+    }
+
     private void setupSharedPreferences() {
         pref = getApplicationContext().getSharedPreferences(getString(R.string.shared_pref_name), MODE_PRIVATE);
         editor = pref.edit();
@@ -267,13 +302,15 @@ public class TimeRecordActivity extends AppCompatActivity implements View.OnClic
         checkOutBtn = findViewById(R.id.checkOutBtn);
         pauseStartBtn = findViewById(R.id.checkPauseStartBtn);
         pauseEndBtn = findViewById(R.id.checkPauseEndBtn);
-        myWorked = findViewById(R.id.myWorkedBtn);
+        checkTextLeftSide = findViewById(R.id.checkTextLeftSide);
+        checkTextRightSide = findViewById(R.id.checkTextRightSide);
+        bottomNavigationViewTimeRecord = findViewById(R.id.timeRecordBottomNav);
+        bottomNavigationViewTimeRecord.setSelectedItemId(R.id.menuNavRegisterTime);
 
         checkInBtn.setOnClickListener(this);
         checkOutBtn.setOnClickListener(this);
         pauseStartBtn.setOnClickListener(this);
         pauseEndBtn.setOnClickListener(this);
-        myWorked.setOnClickListener(this);
 
         sessionCookie = pref.getString(getString(R.string.shared_pref_cookie), "");
         staffId = pref.getLong(getString(R.string.shared_pref_staff_id), 0);
@@ -281,7 +318,6 @@ public class TimeRecordActivity extends AppCompatActivity implements View.OnClic
         checkInBtn.setVisibility(View.VISIBLE);
         setButtonVisibility();
     }
-
 
     @Override
     public void onClick(View view) {
@@ -300,12 +336,6 @@ public class TimeRecordActivity extends AppCompatActivity implements View.OnClic
 
             case R.id.checkPauseEndBtn:
                 pauseEndAPI();
-                break;
-
-            case R.id.myWorkedBtn:
-                System.out.println("workedbtn");
-                Intent myWorked = new Intent(TimeRecordActivity.this, MyWorkedActivity.class);
-                startActivity(myWorked);
                 break;
         }
     }

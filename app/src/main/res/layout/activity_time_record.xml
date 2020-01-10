@@ -4,54 +4,95 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.TimeRecord.TimeRecordActivity">
+    tools:context=".Activities.TimeRecord.TimeRecordActivity"
+    >
 
-    <Button
-        android:id="@+id/checkInBtn"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/check_in_time"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="250dp"
+        android:layout_marginStart="80dp"
+        >
+
+        <ImageButton
+            android:id="@+id/checkInBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/time_record_start"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentStart="true"
+            android:background="@null"
+            />
+
+        <ImageButton
+            android:id="@+id/checkPauseStartBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/time_record_pause"
+            android:layout_alignStart="@id/checkInBtn"
+            android:background="@null"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentStart="true"
+
+            />
+
+        <TextView
+            android:id="@+id/checkTextLeftSide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_below="@id/checkInBtn"
+            android:layout_centerInParent="true"
+            />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="80dp"
+        android:layout_marginTop="250dp"
+        android:layout_alignParentEnd="true">
+
+        <ImageButton
+            android:id="@+id/checkOutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/time_record_stop"
+            android:background="@null"
+            />
+
+        <ImageButton
+            android:id="@+id/checkPauseEndBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/time_record_stop"
+            android:background="@null">
+        </ImageButton>
+
+        <TextView
+            android:id="@+id/checkTextRightSide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_below="@id/checkOutBtn"
+            android:layout_centerInParent="true"
+            />
+
+    </RelativeLayout>
+
+    <include layout="@layout/bottom_navigation_time_record"
+        android:id="@+id/includeBottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="300dp"
-        android:layout_marginStart="50dp"
-        />
-
-    <Button
-        android:id="@+id/checkOutBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/check_out_time"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="300dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="50dp"
-        />
-
-    <Button
-        android:id="@+id/checkPauseStartBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/check_pause_start"
-        android:layout_below="@id/checkInBtn"
-        android:layout_alignStart="@id/checkInBtn"
-        />
-
-    <Button
-        android:id="@+id/checkPauseEndBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/check_pause_end"
-        android:layout_below="@id/checkOutBtn"
-        android:layout_alignEnd="@id/checkOutBtn"
-        />
-
-    <Button
-        android:id="@+id/myWorkedBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="my worked"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
         />
+
+
+
+
 </RelativeLayout>

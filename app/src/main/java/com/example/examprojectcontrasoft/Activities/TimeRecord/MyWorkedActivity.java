@@ -2,23 +2,23 @@ package com.example.examprojectcontrasoft.Activities.TimeRecord;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.Button;
+import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.examprojectcontrasoft.Activities.HomeActivity;
 import com.example.examprojectcontrasoft.Adapters.MyWorkedAdapter;
 import com.example.examprojectcontrasoft.Instances.RetrofitClientAPI;
 import com.example.examprojectcontrasoft.Interfaces.OnNoteListener;
 import com.example.examprojectcontrasoft.Interfaces.RetrofitAPIInterface;
-import com.example.examprojectcontrasoft.Models.Function;
-import com.example.examprojectcontrasoft.Models.LoggedInUser;
 import com.example.examprojectcontrasoft.Models.WorkedDay;
 import com.example.examprojectcontrasoft.Models.WorkedDaysTwoDates;
 import com.example.examprojectcontrasoft.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -34,8 +34,8 @@ public class MyWorkedActivity extends AppCompatActivity implements OnNoteListene
     private MyWorkedAdapter myWorkedAdapter;
     private RecyclerView recyclerViewHome;
     private RecyclerView.LayoutManager layoutManager;
-    private Button backBtn;
     private ArrayList<WorkedDay> workedDaysList;
+    private BottomNavigationView bottomNavigationViewTimeRecord;
 
 
     @Override
@@ -46,15 +46,8 @@ public class MyWorkedActivity extends AppCompatActivity implements OnNoteListene
         setupSharedPreferences();
         init();
 
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent backIntent = new Intent(MyWorkedActivity.this, HomeActivity.class);
-                startActivity(backIntent);
-            }
-        });
-
         fetchMyWorkedDaysTwoWeeks();
+        navItemSelected();
     }
 
     private void fetchMyWorkedDaysTwoWeeks() {
@@ -98,14 +91,40 @@ public class MyWorkedActivity extends AppCompatActivity implements OnNoteListene
         myWorkedAdapter.notifyDataSetChanged();
     }
 
+    private void navItemSelected() {
+        bottomNavigationViewTimeRecord.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.menuNavHome:
+                        Intent navHomeIntent = new Intent(MyWorkedActivity.this, HomeActivity.class);
+                        startActivity(navHomeIntent);
+                        return true;
+
+                    case R.id.menuNavRegisterTime:
+                        Intent navRegisterTime = new Intent(MyWorkedActivity.this, TimeRecordActivity.class);
+                        startActivity(navRegisterTime);
+                        return true;
+
+                    case R.id.menuNavMyWorked:
+                        return true;
+
+                    default:
+                        return true;
+                }
+            }
+        });
+    }
+
     private void setupSharedPreferences() {
         pref = getApplicationContext().getSharedPreferences(getString(R.string.shared_pref_name), MODE_PRIVATE);
         editor = pref.edit();
     }
 
     private void init() {
-        backBtn = findViewById(R.id.backBtnMyWorked);
         recyclerViewHome = findViewById(R.id.recyclerViewMyWorked);
+        bottomNavigationViewTimeRecord = findViewById(R.id.timeRecordBottomNav);
+        bottomNavigationViewTimeRecord.setSelectedItemId(R.id.menuNavMyWorked);
         workedDaysList = new ArrayList<>();
 
         layoutManager = new LinearLayoutManager(MyWorkedActivity.this);

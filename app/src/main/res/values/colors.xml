@@ -5,4 +5,8 @@
     <color name="colorAccent">#D81B60</color>
     <color name="color_red">#F12D18</color>
     <color name="color_white">#FFFF</color>
+    <color name="color_nav_active_background">#0322276B</color>
+    <color name="color_black">#000000</color>
+    <color name="color_black_tint">#272727</color>
+
 </resources>

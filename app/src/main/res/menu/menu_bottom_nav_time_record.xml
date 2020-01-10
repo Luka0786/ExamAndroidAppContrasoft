@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menuNavHome"
+        android:icon="@drawable/menu_nav_home"
+        android:title="@string/menu_nav_home"
+        />
+    <item
+        android:id="@+id/menuNavRegisterTime"
+        android:icon="@drawable/menu_nav_register_time"
+        android:title="@string/menu_nav_register_time" />
+    <item
+        android:id="@+id/menuNavMyWorked"
+        android:icon="@drawable/menu_nav_worked"
+        android:title="@string/menu_nav_my_worked" />
+</menu>
