@@ -45,7 +45,6 @@ public class MyWorkedActivity extends AppCompatActivity implements OnNoteListene
 
         setupSharedPreferences();
         init();
-
         fetchMyWorkedDaysTwoWeeks();
         navItemSelected();
     }
@@ -58,10 +57,10 @@ public class MyWorkedActivity extends AppCompatActivity implements OnNoteListene
 
         RetrofitAPIInterface apiServiceInterface = RetrofitClientAPI.getRetrofitInstance().create(RetrofitAPIInterface.class);
 
-        String cookieTest = pref.getString(getString(R.string.shared_pref_cookie), "");
+        String sessionCookie = pref.getString(getString(R.string.shared_pref_cookie), "");
         Long staffId = pref.getLong(getString(R.string.shared_pref_staff_id), 0);
 
-        Call<WorkedDaysTwoDates> call = apiServiceInterface.getWorkedDaysBetweenTwoDates(cookieTest,
+        Call<WorkedDaysTwoDates> call = apiServiceInterface.getWorkedDaysBetweenTwoDates(sessionCookie,
                 staffId,
                 twoWeeksBehindDate.getDayOfMonth(),
                 twoWeeksBehindDate.getMonth().getValue(),
@@ -73,7 +72,6 @@ public class MyWorkedActivity extends AppCompatActivity implements OnNoteListene
         call.enqueue(new Callback<WorkedDaysTwoDates>() {
             @Override
             public void onResponse(Call<WorkedDaysTwoDates> call, Response<WorkedDaysTwoDates> response) {
-                System.out.println(response);
                 workedDaysList = response.body().getWorkedDayDTOList();
                 genereateMyWorkedDaysRecyclerView(workedDaysList);
             }

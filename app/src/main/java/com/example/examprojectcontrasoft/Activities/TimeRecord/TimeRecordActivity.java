@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,7 +48,6 @@ public class TimeRecordActivity extends AppCompatActivity implements View.OnClic
 
         setupSharedPreferences();
         init();
-        setButtonVisibility();
         navItemSelected();
     }
 
@@ -91,8 +89,8 @@ public class TimeRecordActivity extends AppCompatActivity implements View.OnClic
 
     private void checkInAPI() {
         alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Are you sure you want to check in?")
-                .setTitle("Check In")
+        alertDialogBuilder.setMessage(getString(R.string.check_in_message))
+                .setTitle(getString(R.string.check_in_title))
                 .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -134,8 +132,8 @@ public class TimeRecordActivity extends AppCompatActivity implements View.OnClic
     private void checkOutAPI() {
 
         alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Are you sure you want to check out?")
-                .setTitle("Check out")
+        alertDialogBuilder.setMessage(getString(R.string.check_out_message))
+                .setTitle(getString(R.string.check_out_title))
                 .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -178,8 +176,8 @@ public class TimeRecordActivity extends AppCompatActivity implements View.OnClic
     private void pauseStartAPI() {
 
         alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Are you sure you want to start your pause?")
-                .setTitle("Start pause")
+        alertDialogBuilder.setMessage(getString(R.string.pause_start_message))
+                .setTitle(getString(R.string.start_pause_title))
                 .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -224,8 +222,8 @@ public class TimeRecordActivity extends AppCompatActivity implements View.OnClic
 
     private void pauseEndAPI() {
         alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Are you sure you want to end your pause?")
-                .setTitle("End pause")
+        alertDialogBuilder.setMessage(getString(R.string.pause_end_message))
+                .setTitle(getString(R.string.pause_end_title))
                 .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -277,7 +275,6 @@ public class TimeRecordActivity extends AppCompatActivity implements View.OnClic
                         return true;
 
                     case R.id.menuNavRegisterTime:
-
                         return true;
 
                     case R.id.menuNavMyWorked:

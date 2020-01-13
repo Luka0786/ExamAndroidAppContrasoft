@@ -56,15 +56,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getLoginCookieAPI() {
-        System.out.println("GETLOGINCOOKIE ------- START");
         final String email = loginEmail.getText().toString();
         final String password = loginPassword.getText().toString();
 
         RetrofitAPIInterface apiServiceInterface = RetrofitClientAPI.getRetrofitInstance().create(RetrofitAPIInterface.class);
 
         Call<Void> call = apiServiceInterface.login(email, password);
-
-        System.out.println(call.request().url());
 
         call.enqueue(new Callback<Void>() {
             @Override
@@ -74,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
                     sessionCookie = response.headers().get("Set-Cookie");
                     editor.putString(getString(R.string.shared_pref_cookie), sessionCookie);
                     editor.commit();
-
 
                     Intent loginIntent = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(loginIntent);
@@ -90,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 t.printStackTrace();
-                Toast.makeText(MainActivity.this, "Could not login...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, getString(R.string.login_activity_on_failure), Toast.LENGTH_SHORT).show();
             }
         });
     }

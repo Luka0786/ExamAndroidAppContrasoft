@@ -20,7 +20,6 @@
         android:id="@+id/homeFunctionTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Time record"
         android:textColor="@color/color_white"
         android:textSize="28dp"
         android:layout_gravity="center"

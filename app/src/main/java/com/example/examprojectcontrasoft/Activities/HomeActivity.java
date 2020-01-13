@@ -36,7 +36,6 @@ public class HomeActivity extends AppCompatActivity implements OnNoteListener {
     private ArrayList<Function> functionsList;
     private Button logoutBtn;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,15 +56,14 @@ public class HomeActivity extends AppCompatActivity implements OnNoteListener {
     private void fetchCompanyData() {
         RetrofitAPIInterface apiServiceInterface = RetrofitClientAPI.getRetrofitInstance().create(RetrofitAPIInterface.class);
 
-        String cookieTest = pref.getString(getString(R.string.shared_pref_cookie), "");
+        String sessionCookie = pref.getString(getString(R.string.shared_pref_cookie), "");
 
-        Call<LoggedInUser> call = apiServiceInterface.fetchData(cookieTest);
+        Call<LoggedInUser> call = apiServiceInterface.fetchData(sessionCookie);
 
         call.enqueue(new Callback<LoggedInUser>() {
             @Override
             public void onResponse(Call<LoggedInUser> call, Response<LoggedInUser> response) {
-                System.out.println(response.body());
-                editor.putLong(getString(R.string.shared_pref_staff_id),response.body().getStaff().getStaffId());
+                editor.putLong(getString(R.string.shared_pref_staff_id), response.body().getStaff().getStaffId());
                 editor.commit();
 
                 functionsList = response.body().getCompanyFunctions();
@@ -120,15 +118,12 @@ public class HomeActivity extends AppCompatActivity implements OnNoteListener {
                     break;
 
                 case "Picture upload damage" :
-                    System.out.println("hej damage");
                     break;
 
                 case "Picture upload receipt" :
-                    System.out.println("hej receipt");
                     break;
 
                 default:
-                    System.out.println("hej default");
                     break;
                 }
             }

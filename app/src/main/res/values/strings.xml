@@ -13,7 +13,7 @@
     <string name="check_pause_end">Pause end</string>
     <string name="shared_pref_staff_id">staff_id</string>
     <string name="dialog_cancel">Cancel</string>
-    <string name="dialog_confirm">Ok</string>
+    <string name="dialog_confirm">OK</string>
     <string name="check_in_success">Successfully checked in</string>
     <string name="shared_pref_checked_out">isCheckedOut</string>
     <string name="shared_pref_pause_start">isPauseStarted</string>
@@ -31,4 +31,13 @@
     <string name="menu_nav_my_worked">My worked</string>
     <string name="menu_nav_register_time">Time recording</string>
     <string name="my_worked_title">Last 14 work days</string>
+    <string name="login_activity_on_failure">Could not login...</string>
+    <string name="check_in_message">Are you sure you want to check in?</string>
+    <string name="check_in_title">Check In</string>
+    <string name="check_out_message">Are you sure you want to check out?</string>
+    <string name="check_out_title">Check out</string>
+    <string name="pause_start_message">Are you sure you want to start your pause?</string>
+    <string name="start_pause_title">Start pause</string>
+    <string name="pause_end_message">Are you sure you want to end your pause?</string>
+    <string name="pause_end_title">End pause</string>
 </resources>

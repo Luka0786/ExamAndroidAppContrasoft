@@ -3,7 +3,6 @@ package com.example.examprojectcontrasoft.Models;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class LoggedInUser {
