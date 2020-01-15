@@ -13,4 +13,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="TextInputLayoutAppearance" parent="">
+        <!-- reference our hint & error styles -->
+        <item name="android:textColorHint">@color/colorAccent</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+    </style>
+
+
 </resources>

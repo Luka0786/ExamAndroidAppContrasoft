@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/color_white"
         android:textSize="28dp"
+        android:text="Time record"
         android:layout_gravity="center"
         />
 

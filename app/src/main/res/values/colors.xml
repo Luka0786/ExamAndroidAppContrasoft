@@ -8,5 +8,10 @@
     <color name="color_nav_active_background">#0322276B</color>
     <color name="color_black">#000000</color>
     <color name="color_black_tint">#272727</color>
+    <color name="color_black_gradient">#343A40</color>
+    <color name="color_grey_gradient">#D3D3D3</color>
+    <color name="material_drawer_selected_text">#000000</color>
+    <color name="material_drawer_header_selection_text">#FFFF</color>
+    <color name="material_drawer_header_selection_subtext">#FFFF</color>
 
 </resources>

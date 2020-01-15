@@ -4,10 +4,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,7 +18,17 @@ import com.example.examprojectcontrasoft.Interfaces.OnNoteListener;
 import com.example.examprojectcontrasoft.Interfaces.RetrofitAPIInterface;
 import com.example.examprojectcontrasoft.Models.Function;
 import com.example.examprojectcontrasoft.Models.LoggedInUser;
+import com.example.examprojectcontrasoft.Models.Staff;
 import com.example.examprojectcontrasoft.R;
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 
 import java.util.ArrayList;
 
@@ -34,7 +44,7 @@ public class HomeActivity extends AppCompatActivity implements OnNoteListener {
     private RecyclerView recyclerViewHome;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Function> functionsList;
-    private Button logoutBtn;
+    private Toolbar toolbarHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +55,6 @@ public class HomeActivity extends AppCompatActivity implements OnNoteListener {
         setupSharedPreferences();
         fetchCompanyData();
 
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                logoutUser();
-            }
-        });
     }
 
     private void fetchCompanyData() {
@@ -68,6 +72,7 @@ public class HomeActivity extends AppCompatActivity implements OnNoteListener {
 
                 functionsList = response.body().getCompanyFunctions();
                 genereateFunctionsRecyclerView(functionsList);
+                setupNavigationDrawer(response.body().getStaff());
             }
 
             @Override
@@ -99,10 +104,64 @@ public class HomeActivity extends AppCompatActivity implements OnNoteListener {
         editor = pref.edit();
     }
 
+    private void setupNavigationDrawer(Staff staff) {
+        PrimaryDrawerItem profileItem = new PrimaryDrawerItem().withName("Profile").withIcon(R.drawable.drawer_person);
+        PrimaryDrawerItem contactItem = new PrimaryDrawerItem().withName("Contact us").withIcon(R.drawable.drawer_contact_us);
+
+
+        AccountHeader accountHeader = new AccountHeaderBuilder()
+                .withActivity(this)
+                .withHeaderBackground(R.drawable.test_bg)
+                .withProfileImagesClickable(false)
+                .withSelectionListEnabledForSingleProfile(false)
+
+                .addProfiles(
+                        new ProfileDrawerItem().withName(staff.getFirstName() + " " + staff.getLastName())
+                                .withEmail(staff.getEmail()).withIcon(R.drawable.time_record_start)
+                                .withIcon(R.drawable.drawer_profile_no_pic)
+                ).build();
+
+
+        final Drawer result = new DrawerBuilder()
+                .withActivity(this)
+                .withToolbar(toolbarHome)
+                .withAccountHeader(accountHeader)
+                .addDrawerItems(
+                        profileItem,
+                        new DividerDrawerItem(),
+                        contactItem
+                        ).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        switch (((Nameable) drawerItem).getName().toString()) {
+                            case "Profile":
+                                break;
+
+                            case "Contact us":
+                                break;
+
+                            case "Logout":
+                                logoutUser();
+                                return true;
+                        }
+                        return false;
+                    }
+
+                })
+                .build();
+
+        result.addStickyFooterItem(new PrimaryDrawerItem().withName("Logout").withIcon(R.drawable.drawer_logout));
+
+        result.getActionBarDrawerToggle().getDrawerArrowDrawable().setColor(getColor(R.color.color_white));
+
+    }
+
     private void init(){
+        new DrawerBuilder().withActivity(this).build();
+
         functionsList = new ArrayList<>();
         recyclerViewHome = findViewById(R.id.recyclerViewHome);
-        logoutBtn = findViewById(R.id.logoutBtn);
+        toolbarHome = findViewById(R.id.toolBarHome);
 
         layoutManager = new LinearLayoutManager(HomeActivity.this);
         recyclerViewHome.setLayoutManager(layoutManager);

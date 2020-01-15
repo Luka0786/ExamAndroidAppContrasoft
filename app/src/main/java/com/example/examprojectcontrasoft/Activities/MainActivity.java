@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.examprojectcontrasoft.Instances.RetrofitClientAPI;
 import com.example.examprojectcontrasoft.Interfaces.RetrofitAPIInterface;
 import com.example.examprojectcontrasoft.R;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,7 +22,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText loginEmail, loginPassword;
+    private TextInputEditText loginEmail, loginPassword;
     private Button loginBtn;
     private String sessionCookie;
     private SharedPreferences pref;
