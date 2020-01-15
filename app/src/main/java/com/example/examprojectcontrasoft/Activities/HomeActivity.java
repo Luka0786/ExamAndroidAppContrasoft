@@ -111,7 +111,7 @@ public class HomeActivity extends AppCompatActivity implements OnNoteListener {
 
         AccountHeader accountHeader = new AccountHeaderBuilder()
                 .withActivity(this)
-                .withHeaderBackground(R.drawable.test_bg)
+                .withHeaderBackground(R.drawable.drawer_profile_bg)
                 .withProfileImagesClickable(false)
                 .withSelectionListEnabledForSingleProfile(false)
 
