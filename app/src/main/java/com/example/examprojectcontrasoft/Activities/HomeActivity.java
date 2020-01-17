@@ -108,7 +108,6 @@ public class HomeActivity extends AppCompatActivity implements OnNoteListener {
         PrimaryDrawerItem profileItem = new PrimaryDrawerItem().withName("Profile").withIcon(R.drawable.drawer_person);
         PrimaryDrawerItem contactItem = new PrimaryDrawerItem().withName("Contact us").withIcon(R.drawable.drawer_contact_us);
 
-
         AccountHeader accountHeader = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withHeaderBackground(R.drawable.drawer_profile_bg)
