@@ -28,7 +28,7 @@
     <string name="my_worked_total_worked">Total worked:\u0020</string>
     <string name="my_work_total_time_at_work">Total time at work:\u0020</string>
     <string name="menu_nav_home">Home</string>
-    <string name="menu_nav_my_worked">My worked</string>
+    <string name="menu_nav_my_worked">My work</string>
     <string name="menu_nav_register_time">Time recording</string>
     <string name="my_worked_title">Last 14 work days</string>
     <string name="login_activity_on_failure">Could not login...</string>
